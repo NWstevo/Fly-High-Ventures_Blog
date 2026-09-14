@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <header class="Header">
+        <header class="Header container" >
             <div class="hero_title">
                 <p id="hero_text">Fly-High</p>
                 <span>Blog</span>
@@ -17,7 +17,7 @@
             <p id="intro">Make your ideas an experience by being current with Tech TRENDS!</p>
         </header>
 
-        <nav class="nav_bar">
+        <nav class="nav_bar container">
             <button>Home</button>
             <button>Articles</button>
             <button>News</button>
@@ -30,13 +30,50 @@
             </search>
             <select id="language">
                 <option value="en">🇬🇧</option>
-            </select>
-            
+            </select>    
         </nav>
+        
+        <div class="adverts container"><!--This will be animated to flip(flicker) at 0.5 secs-->
+            <div id="adverts_cards">
+                <!--this will be for the pictures and their titles underneath-->
+            </div>
+        </div>
+        <div class="headlines container"> <!--This will be animated to scroll from left to right at 0.5 secs-->
+            <div class="headline_cards">
+                <img src="#" alt="headline image"><!--this will be for the pictures and their titles underneath-->
+            </div>
 
-        <main>
+            <div class="categories">
+                <a href="#">AI</a>
+                <a href="#">IOT</a>
+                <a href="#">INNOVATION</a>
+                <a href="#">RANDOM</a>
+            </div>
+        </div>
+
+        <main class="container">
+            <div class="news">
+                <div class="news_cards">
+
+                </div>
+                <div class="videos">
+                    <!--Here will be for embedding video links-->
+                </div>
+            </div>
 
         </main>
+
+        <footer class="container">
+            <div id="contacts">
+                <!--This will be for emails, address and mobile-->
+            </div>
+            <div id="socials">
+                <!--for all social media handles-->
+            </div>
+            <div id="policies">
+                <!--This will be for all policies and cookies, terms of use-->
+            </div>
+        </footer>
         
     </body>
     <script src="script.js"></script>
