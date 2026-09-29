@@ -25,7 +25,7 @@
             <div class="nav_bar_right container nav_prop">
                 <search>
                     <form action="/search" method="get">
-                        <input type="search" name="q" placeholder="Type to search">
+                        <input type="search" name="search" placeholder="Type to search">
                         <button type="submit">🔎</button>
                     </form>
                 </search>
@@ -40,7 +40,11 @@
                 <div id="styled_hero_text">Ventures</div>
                 <p id="intro">Make your ideas an experience by being current with Tech TRENDS!</p>
             </div>
-            
+            <p id="signup_text">Want to publish your article? </p>
+            <div class="signup ">
+                <a class="buttons" href="#" id="login">Login</a>
+                <a class="buttons" href="#" id="signup">Sign Up</a>
+            </div>
             <div class="adverts container"><!--This will be animated to flip(flicker) at 0.5 secs-->
                 <a href="#"><img src="images/fly-high-1.jpeg"></a>
                 <!--this will be for the pictures and their titles underneath-->
@@ -48,16 +52,19 @@
         </header>
         
         <div class="headlines container"> <!--This will be animated to scroll from left to right at 0.5 secs-->
+            <div class="categories">
+                <a class="buttons" href="#">All</a>
+                <a class="buttons" href="#">Tech News</a>
+                <a class="buttons" href="#">Innovations</a>
+                <a class="buttons" href="#">Personal Articles</a>
+                <a class="buttons" href="#">Opportunitiy pathways</a>
+                <form action="search" method="get"><input type="text" name="article_search" placeholder="search Articles"></form>
+            </div>
+            
             <div class="headline_cards">
                 <img src="#" alt="headline image"><!--this will be for the pictures and their titles underneath-->
             </div>
 
-            <div class="categories">
-                <a href="#">AI</a>
-                <a href="#">IOT</a>
-                <a href="#">INNOVATION</a>
-                <a href="#">RANDOM</a>
-            </div>
         </div>
 
         <main class="container">

@@ -63,16 +63,41 @@ body{
 #hero_text{
     align-self: flex-start;
     font-size: 6rem;
-    position: relative; 
+    position: relative;
+    color: rgb(255, 247, 22); 
+    text-shadow: 7px 10px 5px #000000;
+    text-decoration: underline;
 }
 #hero_blog{
-    font-size: 9rem;
+    font-size: 5rem;
     position: absolute;
+    top: 100px;
+    left: 200px;
+    color: rgb(18, 218, 225);
+    text-shadow: 7px 10px 5px #000000;
+    text-decoration: underline;
+    text-decoration-color: rgb(77, 196, 207);
 }
 #styled_hero_text{
     font-size: 3rem;
     position:absolute;
-    top: 200px
+    top: 100px
+}
+#intro{
+    position: absolute;
+    top: 300px;
+    font-size: 1.2rem;
+    color: rgb(230, 230, 230);
+}
+.signup{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    gap: 15px;
+    padding: 10px 0px;
+
 }
 
 .adverts{
@@ -98,3 +123,44 @@ body{
     opacity: 1;
 }
 
+
+.headlines{
+    width: 100%;
+    min-height: 400px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.categories{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 0px;
+    border: 2px solid #4377f0;
+    border-radius: 5px;
+}
+
+.buttons {
+    text-decoration: none;
+    padding: 5px 10px;
+    background-color: rgb(82, 190, 214);
+    font-size: 1rem;
+    color:rgb(73, 73, 73);
+    border: 2px solid #4377f0;
+    box-shadow: 5px 2px 5px #fffd99;
+    border-radius: 15px;
+}
+.buttons:hover{
+    color: #e68535;
+}
+
+.headline_cards{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 0px;
+    border: 2px solid #4377f0;
+    border-radius: 5px;
+}
