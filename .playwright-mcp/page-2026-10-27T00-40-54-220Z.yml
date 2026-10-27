@@ -1,0 +1,103 @@
+- generic [active] [ref=f2e1]:
+  - navigation [ref=f2e2]:
+    - img "logo" [ref=f2e4]
+    - generic [ref=f2e5]:
+      - link "Home" [ref=f2e6] [cursor=pointer]:
+        - /url: "#"
+      - link "Articles" [ref=f2e7] [cursor=pointer]:
+        - /url: "#"
+      - link "News" [ref=f2e8] [cursor=pointer]:
+        - /url: "#"
+      - link "Personal" [ref=f2e9] [cursor=pointer]:
+        - /url: "#"
+      - link "Innovations" [ref=f2e10] [cursor=pointer]:
+        - /url: "#"
+      - link "Opportunities" [ref=f2e11] [cursor=pointer]:
+        - /url: "#"
+    - generic [ref=f2e12]:
+      - search [ref=f2e13]:
+        - generic [ref=f2e14]:
+          - searchbox "Type to search" [ref=f2e15]
+          - button "🔎" [ref=f2e16]
+      - combobox [ref=f2e17]:
+        - option "🇬🇧" [selected]
+  - banner [ref=f2e18]:
+    - generic [ref=f2e19]:
+      - paragraph [ref=f2e20]:
+        - text: Fly-High
+        - generic [ref=f2e21]: Blog
+      - generic [ref=f2e22]: Ventures
+      - paragraph [ref=f2e23]: Make your ideas an experience by being current with Tech TRENDS!
+    - paragraph [ref=f2e24]: Want to publish your article?
+    - generic [ref=f2e25]:
+      - link "Login" [ref=f2e26] [cursor=pointer]:
+        - /url: "#"
+      - link "Sign Up" [ref=f2e27] [cursor=pointer]:
+        - /url: "#"
+    - link [ref=f2e29] [cursor=pointer]:
+      - /url: "#"
+  - generic [ref=f2e31]:
+    - generic [ref=f2e32]:
+      - link "All" [ref=f2e33] [cursor=pointer]:
+        - /url: "#"
+      - link "Tech News" [ref=f2e34] [cursor=pointer]:
+        - /url: "#"
+      - link "Innovations" [ref=f2e35] [cursor=pointer]:
+        - /url: "#"
+      - link "Personal Articles" [ref=f2e36] [cursor=pointer]:
+        - /url: "#"
+      - link "Opportunitiy pathways" [ref=f2e37] [cursor=pointer]:
+        - /url: "#"
+      - textbox "search Articles" [ref=f2e39]
+    - img "headline image" [ref=f2e41]
+  - main [ref=f2e42]:
+    - generic [ref=f2e44]:
+      - generic [ref=f2e45]:
+        - img "news image 1" [ref=f2e46]
+        - generic [ref=f2e47]:
+          - generic [ref=f2e48]: Tech News
+          - heading "News headline 1 goes here" [level=3] [ref=f2e49]
+          - paragraph [ref=f2e50]: Short highlight of the article. One or two sentences to catch the reader's attention.
+          - link "Read more →" [ref=f2e51] [cursor=pointer]:
+            - /url: "#"
+      - generic [ref=f2e52]:
+        - img "news image 2" [ref=f2e53]
+        - generic [ref=f2e54]:
+          - generic [ref=f2e55]: Personal
+          - heading "News headline 2 goes here" [level=3] [ref=f2e56]
+          - paragraph [ref=f2e57]: Short highlight of the article. One or two sentences to catch the reader's attention.
+          - link "Read more →" [ref=f2e58] [cursor=pointer]:
+            - /url: "#"
+      - generic [ref=f2e59]:
+        - img "news image 3" [ref=f2e60]
+        - generic [ref=f2e61]:
+          - generic [ref=f2e62]: Opportunities
+          - heading "News headline 3 goes here" [level=3] [ref=f2e63]
+          - paragraph [ref=f2e64]: Short highlight of the article. One or two sentences to catch the reader's attention.
+          - link "Read more →" [ref=f2e65] [cursor=pointer]:
+            - /url: "#"
+      - generic [ref=f2e66]:
+        - img "news image 4" [ref=f2e67]
+        - generic [ref=f2e68]:
+          - generic [ref=f2e69]: Innovations
+          - heading "News headline 4 goes here" [level=3] [ref=f2e70]
+          - paragraph [ref=f2e71]: Short highlight of the article. One or two sentences to catch the reader's attention.
+          - link "Read more →" [ref=f2e72] [cursor=pointer]:
+            - /url: "#"
+      - generic [ref=f2e73]:
+        - img "news image 5" [ref=f2e74]
+        - generic [ref=f2e75]:
+          - generic [ref=f2e76]: Tech News
+          - heading "News headline 5 goes here" [level=3] [ref=f2e77]
+          - paragraph [ref=f2e78]: Short highlight of the article. One or two sentences to catch the reader's attention.
+          - link "Read more →" [ref=f2e79] [cursor=pointer]:
+            - /url: "#"
+      - generic [ref=f2e80]:
+        - img "news image 6" [ref=f2e81]
+        - generic [ref=f2e82]:
+          - generic [ref=f2e83]: Personal
+          - heading "News headline 6 goes here" [level=3] [ref=f2e84]
+          - paragraph [ref=f2e85]: Short highlight of the article. One or two sentences to catch the reader's attention.
+          - link "Read more →" [ref=f2e86] [cursor=pointer]:
+            - /url: "#"
+  - contentinfo [ref=f2e87]

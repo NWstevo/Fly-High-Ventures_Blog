@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Fly High Ventures Blog</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <nav class="nav_bar container">
+            <div class="nav_bar_left container nav_prop">
+                <img src="images/logo.png" alt="logo" width="100px" height="70px">
+            </div>
+
+            <div class="nav_bar_middle container nav_prop">
+                <a class="nav_link" href="#">Home</a>
+                <a class="nav_link" href="#">Articles</a>
+                <a class="nav_link" href="#">News</a>
+                <a class="nav_link" href="#">Personal</a>
+                <a class="nav_link" href="#">Innovations</a>
+                <a class="nav_link" href="#">Opportunities</a>
+            </div>
+
+            <div class="nav_bar_right container nav_prop">
+                <search>
+                    <form action="/search" method="get">
+                        <input type="search" name="search" placeholder="Type to search">
+                        <button type="submit">🔎</button>
+                    </form>
+                </search>
+                <select id="language">
+                    <option value="en">🇬🇧</option>
+                </select> 
+            </div>   
+        </nav>
+        <header class="Header container" >
+            <div class="hero_title container">
+                <p id="hero_text">Fly-High <span id="hero_blog">Blog</span></p>    
+                <div id="styled_hero_text">Ventures</div>
+                <p id="intro">Make your ideas an experience by being current with Tech TRENDS!</p>
+            </div>
+            <p id="signup_text">Want to publish your article? </p>
+            <div class="signup ">
+                <a class="buttons" href="#" id="login">Login</a>
+                <a class="buttons" href="#" id="signup">Sign Up</a>
+            </div>
+            <div class="adverts container"><!--This will be animated to flip(flicker) at 0.5 secs-->
+                <a href="#"><img src="images/fly-high-1.jpeg"></a>
+                <!--this will be for the pictures and their titles underneath-->
+            </div>
+        </header>
+        
+        <div class="headlines container"> <!--This will be animated to scroll from left to right at 0.5 secs-->
+            <div class="categories">
+                <a class="buttons" href="#">All</a>
+                <a class="buttons" href="#">Tech News</a>
+                <a class="buttons" href="#">Innovations</a>
+                <a class="buttons" href="#">Personal Articles</a>
+                <a class="buttons" href="#">Opportunitiy pathways</a>
+                <form action="search" method="get"><input type="text" name="article_search" placeholder="search Articles"></form>
+            </div>
+            
+            <div class="headline_cards">
+                <img src="#" alt="headline image"><!--this will be for the pictures and their titles underneath-->
+            </div>
+
+        </div>
+
+        <main class="container">
+            <div class="news">
+                <div class="news_cards">
+                    <div class="card">
+                        <img src="images/fly-high-2.jpeg" alt="news image 1">
+                        <div class="card_text">
+                            <span class="card_tag">Tech News</span>
+                            <h3>News headline 1 goes here</h3>
+                            <p>Short highlight of the article. One or two sentences to catch the reader's attention.</p>
+                            <a href="#">Read more →</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images/fly-high-1.jpeg" alt="news image 2">
+                        <div class="card_text">
+                            <span class="card_tag">Personal</span>
+                            <h3>News headline 2 goes here</h3>
+                            <p>Short highlight of the article. One or two sentences to catch the reader's attention.</p>
+                            <a href="#">Read more →</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images/fly-high-bg.jpeg" alt="news image 3">
+                        <div class="card_text">
+                            <span class="card_tag">Opportunities</span>
+                            <h3>News headline 3 goes here</h3>
+                            <p>Short highlight of the article. One or two sentences to catch the reader's attention.</p>
+                            <a href="#">Read more →</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images/fly-high-2.jpeg" alt="news image 4">
+                        <div class="card_text">
+                            <span class="card_tag">Innovations</span>
+                            <h3>News headline 4 goes here</h3>
+                            <p>Short highlight of the article. One or two sentences to catch the reader's attention.</p>
+                            <a href="#">Read more →</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images/fly-high-1.jpeg" alt="news image 5">
+                        <div class="card_text">
+                            <span class="card_tag">Tech News</span>
+                            <h3>News headline 5 goes here</h3>
+                            <p>Short highlight of the article. One or two sentences to catch the reader's attention.</p>
+                            <a href="#">Read more →</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images/fly-high-bg.jpeg" alt="news image 6">
+                        <div class="card_text">
+                            <span class="card_tag">Personal</span>
+                            <h3>News headline 6 goes here</h3>
+                            <p>Short highlight of the article. One or two sentences to catch the reader's attention.</p>
+                            <a href="#">Read more →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="videos">
+                    <!--Here will be for embedding video links-->
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="footer container">
+            <div id="contacts">
+                <!--This will be for emails, address and mobile-->
+            </div>
+            <div id="socials">
+                <!--for all social media handles-->
+            </div>
+            <div id="policies">
+                <!--This will be for all policies and cookies, terms of use-->
+            </div>
+        </footer>
+        
+    </body>
+    <script src="script.js"></script>
+</html>
