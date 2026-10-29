@@ -1,0 +1,30 @@
+
+<%- include('partials/header', {title: 'Home' }) %>
+        <div class="headlines container"> <!--This will be animated to scroll from left to right at 0.5 secs-->
+            <div class="categories">
+                <a class="buttons" href="#">All</a>
+                <a class="buttons" href="#">Tech News</a>
+                <a class="buttons" href="#">Innovations</a>
+                <a class="buttons" href="#">Personal Articles</a>
+                <a class="buttons" href="#">Opportunitiy pathways</a>
+                <form action="search" method="get"><input type="text" name="article_search" placeholder="search Articles"></form>
+            </div>
+
+            <div class="article_cards">
+                <img src="#" alt="article image"><!--this will be for the pictures and their titles underneath-->
+            </div>
+        </div>
+
+        <main class="container">
+            <div class="news">
+                <div class="article">
+                    
+                </div>
+                <div class="videos">
+                    <!--Here will be for embedding video links-->
+                </div>
+            </div>
+
+        </main>
+
+        <%- include('partials/footer') %>
