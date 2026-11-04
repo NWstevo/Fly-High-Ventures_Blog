@@ -1,21 +1,46 @@
+
 <%- include('partials/header', {title: 'Home' }) %>
 
-        <header class="Header container" >
+        <header class="Header container">
             <div class="hero_title container">
-                <p id="hero_text">Fly-High <span id="hero_blog">Blog</span></p>    
+                <p id="hero_text">Fly-High <span id="hero_blog">Blog</span></p>
                 <div id="styled_hero_text">Ventures</div>
                 <p id="intro">Make your ideas an experience by being current with Tech TRENDS!</p>
+                <div class="publish">
+                    <p id="signup_text">Want to publish your article? </p>
+                    <a class="buttons" href="#" id="get_started">Get Started</a>
+                </div>
             </div>
-            <p id="signup_text">Want to publish your article? </p>
             <div class="signup ">
-                <a class="buttons" href="#" id="login">Login</a>
-                <a class="buttons" href="#" id="signup">Sign Up</a>
-            </div>
-            <div class="adverts container"><!--This will be animated to flip(flicker) at 0.5 secs-->
-                <a href="#"><img src="images/fly-high-1.jpeg"></a>
-                <!--this will be for the pictures and their titles underneath-->
+                <button class="buttons" type="submit" id="login">Login</button>
+                <button class="buttons" type="submit" id="signup">Sign Up</button>
             </div>
         </header>
+
+        <div id="auth_modal" class="modal" hidden>
+            <div class="auth_box">
+                <button type="button" id="auth_close" class="auth_modal_close" aria-label="Close">×</button>
+
+                <div class="tabs">
+                    <button type="button" class="tab active" data-tab="login">Login</button>
+                    <button type="button" class="tab" data-tab="signup">Sign Up</button>
+                </div>
+
+                <form id="login_tab" class="panel" action="/login" method="post">
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit">Log in</button>
+                </form>
+
+                <form id="signup_tab" class="panel" action="/signup" method="post" hidden>
+                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit">Create account</button>
+                </form>                   
+                
+            </div>
+        </div>
         
         <div class="headlines container"> <!--This will be animated to scroll from left to right at 0.5 secs-->
             <div class="categories">
@@ -26,11 +51,10 @@
                 <a class="buttons" href="#">Opportunitiy pathways</a>
                 <form action="search" method="get"><input type="text" name="article_search" placeholder="search Articles"></form>
             </div>
-            
+
             <div class="headline_cards">
                 <img src="#" alt="headline image"><!--this will be for the pictures and their titles underneath-->
             </div>
-
         </div>
 
         <main class="container">
