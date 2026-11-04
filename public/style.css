@@ -73,8 +73,8 @@ body{
     font-size: 6rem;
     position: relative;
     margin: 20px 0 0 40px;
-    color: #000000;
-    text-shadow: 3px 4px 6px rgba(255, 255, 255, 0.6);
+    color: #0b2a5b;
+    text-shadow: 3px 4px 6px #f5b300;
 }
 #hero_blog{
     font-size: 5rem;
@@ -82,24 +82,58 @@ body{
     top: 100px;
     left: 200px;
     color: #f5b300;
-    text-shadow: 3px 4px 6px rgba(0, 0, 0, 0.6);
+    text-shadow: 3px 5px 5px #0b2a5b;
 }
 #styled_hero_text{
     font-size: 2.5rem;
     position:absolute;
     top: 130px;
     left: 45px;
-    color: #4fc3f7;
+    color: #0b2a5b;
     letter-spacing: 4px;
-    text-shadow: 3px 4px 2px rgb(255, 251, 0);
+    text-shadow: 2px 2px 5px #f5b300;
     
 }
 #intro{
     position: absolute;
-    top: 300px;
+    background: #0b2a5b;
+    padding: 5px 10px;
+    top: 250px;
     left: 40px;
     font-size: 1.2rem;
     color: #e3ecf7;
+    border-radius: 5px;
+}
+.publish{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: absolute;
+    top: 300px;
+    left: 40px;
+}
+#signup_text{
+    margin: 0;
+    padding: 5px 10px;
+    background-color: #ffffff;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #0b2a5b;
+    border: 2px solid #e9ebef;
+    animation: pulse 1s ease-in-out infinite;
+}
+@keyframes pulse{
+    0%, 100%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.08);
+    }
+}
+@media (prefers-reduced-motion: reduce){
+    #signup_text{
+        animation: none;
+    }
 }
 .signup{
     display: flex;
@@ -136,7 +170,7 @@ body{
 }
 
 
-.headlines{
+.article{
     width: 100%;
     min-height: 400px;
     margin-top: 15px;
@@ -170,12 +204,12 @@ body{
     border-color: #f5b300;
     color: #f5b300;
 }
-#signup{
+#signup, #get_started{
     background-color: #f5b300;
     border-color: #f5b300;
     color: #0b2a5b;
 }
-#signup:hover{
+#signup:hover, #get_started:hover{
     background-color: #0b2a5b;
     color: #f5b300;
 }
@@ -189,6 +223,10 @@ body{
     border-radius: 5px;
 }
 
+.categories .buttons.active {
+  background-color: #333;
+  color: #fff;
+}
 
 /* NEWS CARDS */
 .news_cards{
@@ -308,9 +346,111 @@ body{
     border-top: 2px solid #f5b300;
     text-align: center;
     width: 100%;
-    height: 200px;
+    min-height: 200px;
     position:relative;
     bottom: 0;
     border: 2px solid #0b2a5b;
 
+}
+
+/*Same width, padding and columns as .news_cards so the footer lines up with the cards*/
+.footer_inner{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    padding: 0 15px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.footer_column{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 10px;
+}
+.footer_column h3{
+    margin: 0;
+    color: #f5b300;
+}
+.footer_list{
+    list-style: none;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.footer_list a{
+    color: #ffffff;
+    text-decoration: none;
+}
+.footer_list a:hover{
+    color: #f5b300;
+}
+@media (max-width: 700px){
+    .footer_inner{
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+
+/*signup and login modal*/
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal[hidden] {
+  display: none;
+}
+
+.auth_box {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  width: min(360px, 90vw);
+  position: relative;
+}
+
+.auth_modal_close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tab {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  background: #eee;
+  cursor: pointer;
+}
+
+.tab.active {
+  background: #333;
+  color: #fff;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
