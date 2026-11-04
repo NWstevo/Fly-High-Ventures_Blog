@@ -2,4 +2,6 @@ node_modules/
 README.md
 .env
 .playwright-mcp/
-.package-lock.json
+package-lock.json
+package.json
+sqlite3 data/blog.db ".tables"
