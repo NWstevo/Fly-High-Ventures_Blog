@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> | Fly High Ventures Blog</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <nav class="nav_bar container"> 
+        <div class="nav_bar_left container nav_prop">
+            <img src="/images/logo.png" alt="logo" width="100px" height="70px">
+        </div>
+
+        <div class="nav_bar_middle container nav_prop">
+            <a class="nav_link" href="/">Home</a>
+            <a class="nav_link" href="#">Articles</a>
+            <a class="nav_link" href="#">News</a>
+            <a class="nav_link" href="#">Personal</a>
+            <a class="nav_link" href="#">Innovations</a>
+            <a class="nav_link" href="#">Opportunities</a>
+        </div>
+
+        <div class="nav_bar_right container nav_prop">
+            <search>
+                <form action="/search" method="get">
+                    <input type="search" name="search" placeholder="Type to search">
+                    <button type="submit">🔎</button>
+                </form>
+            </search>
+            <select id="language">
+                <option value="en">🇬🇧</option>
+            </select>
+        </div>
+    </nav>
