@@ -1,3 +1,10 @@
+/* REVIEW: Colour palette used throughout this file:
+    #0b2a5b navy (brand, text, nav/footer background)
+    #f5b300 gold (accents, hover states)
+    #1e88e5 blue (borders, links)
+    #f4f7fb light grey-blue (page background) */
+
+
 *{
     margin: 0;
     padding: 0;
@@ -17,6 +24,7 @@ body{
 }
 
 /*. NAVIGATION BAR */
+
 .nav_bar{
     background-color: #0b2a5b;
     border: none;
@@ -54,6 +62,7 @@ body{
 }
 
 /* THE HEADER*/
+
 .Header{
     display:flex;
     flex-direction: column;
@@ -61,6 +70,7 @@ body{
     
 }
 .hero_title{
+    /* Relative URLs in CSS resolve against the stylesheet's location (/style.css) */
     background: url(images/bg-image.png) center/ cover no-repeat;
     height:fit-content;
     min-height: 400px;
@@ -130,6 +140,7 @@ body{
         transform: scale(1.08);
     }
 }
+/* Accessibility: turns the animation off for users who enabled "reduce motion" */
 @media (prefers-reduced-motion: reduce){
     #signup_text{
         animation: none;
@@ -146,6 +157,7 @@ body{
 
 }
 
+/* NOTE: no element uses .adverts at the moment. */
 .adverts{
     display: flex;
     margin-top: 15px;
@@ -223,6 +235,7 @@ body{
     border-radius: 5px;
 }
 
+/* REVIEW: Set on the selected category by public/script.js. */
 .categories .buttons.active {
   background-color: #333;
   color: #fff;
@@ -244,11 +257,15 @@ body{
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(11, 42, 91, 0.15);
     border-top: 4px solid #1e88e5;
+    /* Cards start invisible and fade/slide in with slide_up (defined below).
+       `forwards` keeps the final keyframe after the animation ends, so the cards
+       stay visible. position: relative lets the keyframes animate `top`. */
     position: relative;
     opacity: 0;
     animation: slide_up 0.8s ease forwards;
     transition: transform 0.3s, box-shadow 0.3s;
 }
+/* Staggered delays so the cards appear one after another. */
 .card:nth-child(2){
     animation-delay: 0.3s;
 }
@@ -324,6 +341,7 @@ body{
     }
 }
 
+/* Responsive grid: 3 columns by default, 2 below 900px, 1 below 600px. */
 @media (max-width: 900px){
     .news_cards{
         grid-template-columns: repeat(2, 1fr);
@@ -398,6 +416,7 @@ body{
 
 /*signup and login modal*/
 
+
 .modal {
   position: fixed;
   inset: 0;
@@ -408,6 +427,8 @@ body{
   z-index: 1000;
 }
 
+/* Needed because `display: flex` above overrides the browser's default
+  [hidden] { display: none }, which would keep the modal visible. */
 .modal[hidden] {
   display: none;
 }

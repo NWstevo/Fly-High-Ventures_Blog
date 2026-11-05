@@ -17,10 +17,12 @@
             </div>
         </header>
 
+        <%# Login/sign-up modal, opened by script.js. Forms POST to routes/auth.js; input names become req.body keys. %>
         <div id="auth_modal" class="modal" hidden>
             <div class="auth_box">
                 <button type="button" id="auth_close" class="auth_modal_close" aria-label="Close">×</button>
 
+                <%# data-tab must match a key of `panels` in script.js. %>
                 <div class="tabs">
                     <button type="button" class="tab active" data-tab="login">Login</button>
                     <button type="button" class="tab" data-tab="signup">Sign Up</button>
@@ -59,6 +61,7 @@
 
         <main class="container">
             <div class="news">
+                <%# Placeholder cards, to be replaced by a loop over posts from the database. %>
                 <div class="news_cards">
                     <div class="card">
                         <img src="images/fly-high-2.jpeg" alt="news image 1">
