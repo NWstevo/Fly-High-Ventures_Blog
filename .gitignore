@@ -5,3 +5,5 @@ README.md
 package-lock.json
 package.json
 sqlite3 data/blog.db ".tables"
+data/blog.db
+*.db
