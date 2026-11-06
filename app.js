@@ -2,7 +2,6 @@
 import express from 'express';
 import post_route from './routes/posts.js';
 import auth_route from './routes/auth.js';
-import comments_route from './routes/comments.js'
 import liveReload from './config/liveReload.js';
 
 const app = express();
@@ -31,7 +30,7 @@ app.get('/article', (req,res)=>{
 // Feature routers. GET '/' in posts.js never runs: app.get('/') above handles it first.
 app.use(post_route)
 app.use(auth_route)
-app.use(comments_route)
+
 
 // Starts the server on http://localhost:3000.
 app.listen(port, ()=>{

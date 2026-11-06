@@ -1,21 +1,21 @@
-// Opens the SQLite database and creates the tables if they do not exist yet.
-// better-sqlite3 is synchronous: queries return results directly instead of
-// NOTE: nothing imports this file yet, so the tables are only created when it
-// is run directly (node data/database.js) or once a route imports `db`.
+/* Opens the SQLite database and creates the tables if they do not exist yet.
+better-sqlite3 is synchronous: queries return results directly.
+It is run directly (node data/database.js) or once a route imports `db`.*/
 import Database from 'better-sqlite3'
 import path from 'path'
-import{ fileURLToPath } from 'url'
+import { fileURLToPath } from 'url'
 
 // ES modules have no built-in __dirname, so we build it from this file's URL.
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-// Opens blog.db, or creates an empty one if the file does not exist.
+
+
+// Opens blog.db file, or creates an empty one if it does not exist.
 const db = new Database(path.join(__dirname, 'blog.db'));
 
 
-//  SQLite does not enforce FOREIGN KEY constraints unless this is turned on,
-//  setting has to be applied on every new connection.
+//  SQLite does not enforce FOREIGN KEY constraints unless this is turned on and the setting has to be applied on every new connection.
 db.pragma("foreign_keys = ON");
+
 
 // calling a method on the database object named db. It sends the SQL inside the template string to the database to execute.
 db.exec(`
@@ -35,6 +35,8 @@ db.exec(`
     author_id INTEGER NOT NULL,
     created_at TEXT NOT NULL DEFAULT (datetime('now')),
     updated_at TEXT);
+
     `);
 
 // - updated_at is NULL until the post is edited for the first time.
+export default db;
