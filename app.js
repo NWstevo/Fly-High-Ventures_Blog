@@ -3,6 +3,7 @@ import express from 'express';
 import post_route from './routes/posts.js';
 import auth_route from './routes/auth.js';
 import liveReload from './config/liveReload.js';
+import session from 'express-session';
 
 const app = express();
 const port = 3000
@@ -27,10 +28,21 @@ app.get('/article', (req,res)=>{
     res.render('article', {title: "article"})
 })
 
+// Form parsing and sessions. Registered before the routers so they get req.body and req.session.
+app.use(express.urlencoded({extended: true}));
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'dev-secret-temporal',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        httpOnly:true,
+        maxAge: 1000 * 60 * 60 * 2, // 2 hours
+    }
+}));
+
 // Feature routers. GET '/' in posts.js never runs: app.get('/') above handles it first.
 app.use(post_route)
 app.use(auth_route)
-
 
 // Starts the server on http://localhost:3000.
 app.listen(port, ()=>{
