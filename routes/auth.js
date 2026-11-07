@@ -1,20 +1,42 @@
-// Authentication routes (sign up and log in). These are placeholders for now:
-// They send fixed text instead of creating accounts or checking credentials.
+// Authentication routes (sign up and log in).
+// POST /signup validates the form and creates the account; the login routes still send placeholder text.
 import express from "express";
+
+import {findUserByEmail, createUser} from '../data/userQueries.js'
 
 // A Router is a mini-app that holds a group of related routes. app.js mounts it with app.use(), which keeps app.js small as the project grows.
 const router = express.Router();
 
 
-router.get('/signup', (req, res)=>{
-    res.send("Send users to signup auth")
+router.get('/login', (req, res)=>{
+    res.send("Send users to login auth")
 })
-router.get('/login', (req,res)=>{
-    res.send("Existing User has to input their credentials")
+// Handles the sign-up form on the home page (views/index.ejs).
+router.post('/signup', (req,res)=>{
+    // Form fields arrive in req.body (parsed by express.urlencoded in app.js). Email is lowercased so the duplicate check ignores capitals.
+    const name = req.body.name?.trim();
+    const email = req.body.email?.trim().toLowerCase();
+    const password = req.body.password;
+
+    // Validation: stop with an error message if the form data is not usable.
+    if (!name || !email || !password){
+        return res.status(400).send('Fill all required fields')
+    }
+    if (password.length < 8){
+        return res.status(400).send('Password must be at least 8 characters')
+    }
+     if (findUserByEmail(email)) {
+    return res.status(409).send('An account with this email already exists');
+    }
+
+    // createUser hashes the password and returns the new user's id.
+    const userId = createUser({name, email, password});
+res.send("Signup form submitted")
 })
 
-router.post('/signup', (req, res)=>{
-    res.send("Signup form submitted")
+router.get('/signup', (req, res)=>{
+    res.send("Signup sucessfull")
+
 })
 router.post('/login', (req,res)=>{
     res.send("Login form submitted")
