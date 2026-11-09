@@ -1,7 +1,7 @@
-// Authentication routes (sign up and log in).
-// POST /signup validates the form, creates the account, logs the user in and redirects home; GET /signup redirects home; the login routes still send placeholder text.
+// Authentication routes (sign up, log in and log out).
+// The sign-up and login forms live on the home page, so GET /signup and GET /login just redirect there.
 import express from "express";
-import bycrypt from 'bcryptjs';
+import bcrypt from 'bcryptjs';
 
 import {findUserByEmail, createUser} from '../data/userQueries.js'
 
@@ -10,7 +10,7 @@ const router = express.Router();
 
 
 router.get('/login', (req, res)=>{
-    res.send("Send users to login auth")
+    res.redirect('/')
 })
 // Handles the sign-up form on the home page (views/index.ejs).
 router.post('/signup', (req,res)=>{
@@ -40,6 +40,7 @@ router.get('/signup', (req, res)=>{
     res.redirect('/')
 
 })
+// Handles the login form on the home page (views/index.ejs).
 router.post('/login', (req,res)=>{
     const email = req.body.email?.trim().toLowerCase();
     const password = req.body.password;
@@ -47,15 +48,25 @@ router.post('/login', (req,res)=>{
         return res.status(400).send('Email and Password are required')
     };
 
+    // The same error is sent for a wrong email or password, so nobody can find out which emails are registered.
     const user = findUserByEmail(email);
-    const passwordMatches = user && bycrypt.compareSync(password, user.password_hash);
+    const passwordMatches = user && bcrypt.compareSync(password, user.password_hash);
     if (!passwordMatches){
         return res.status(401).send('Incorrect email or password!')
     }
 
+    // Storing the id in the session is what keeps the user logged in.
     req.session.userId = user.id;
 
     res.redirect("/")
+});
+
+// Logs the user out: deletes the session on the server and the session cookie in the browser.
+router.post('/logout', (req, res)=>{
+    req.session.destroy(()=>{
+        res.clearCookie('connect.sid');
+        res.redirect('/')
+    })
 });
 
 export default router
