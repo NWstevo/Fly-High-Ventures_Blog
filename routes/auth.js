@@ -1,6 +1,7 @@
 // Authentication routes (sign up and log in).
 // POST /signup validates the form, creates the account, logs the user in and redirects home; GET /signup redirects home; the login routes still send placeholder text.
 import express from "express";
+import bycrypt from 'bcryptjs';
 
 import {findUserByEmail, createUser} from '../data/userQueries.js'
 
@@ -40,7 +41,21 @@ router.get('/signup', (req, res)=>{
 
 })
 router.post('/login', (req,res)=>{
-    res.send("Login form submitted")
-})
+    const email = req.body.email?.trim().toLowerCase();
+    const password = req.body.password;
+    if (!email || !password){
+        return res.status(400).send('Email and Password are required')
+    };
+
+    const user = findUserByEmail(email);
+    const passwordMatches = user && bycrypt.compareSync(password, user.password_hash);
+    if (!passwordMatches){
+        return res.status(401).send('Incorrect email or password!')
+    }
+
+    req.session.userId = user.id;
+
+    res.redirect("/")
+});
 
 export default router
