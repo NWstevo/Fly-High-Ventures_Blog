@@ -475,3 +475,8 @@ body{
   flex-direction: column;
   gap: 0.75rem;
 }
+
+/* Same fix as .modal[hidden]: `display: flex` above would keep the hidden form visible. */
+.panel[hidden]{
+    display: none;
+}
