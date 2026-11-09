@@ -1,5 +1,5 @@
 // Authentication routes (sign up and log in).
-// POST /signup validates the form and creates the account; the login routes still send placeholder text.
+// POST /signup validates the form, creates the account, logs the user in and redirects home; GET /signup redirects home; the login routes still send placeholder text.
 import express from "express";
 
 import {findUserByEmail, createUser} from '../data/userQueries.js'
@@ -31,11 +31,12 @@ router.post('/signup', (req,res)=>{
 
     // createUser hashes the password and returns the new user's id.
     const userId = createUser({name, email, password});
-res.send("Signup form submitted")
+    req.session.userId=userId
+    res.redirect('/')
 })
 
 router.get('/signup', (req, res)=>{
-    res.send("Signup sucessfull")
+    res.redirect('/')
 
 })
 router.post('/login', (req,res)=>{
