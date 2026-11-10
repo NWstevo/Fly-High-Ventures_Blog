@@ -28,10 +28,22 @@ app.get('/article', (req,res)=>{
     res.render('article', {title: "article"})
 })
 
-// Form parsing and sessions. Registered before the routers so they get req.body and req.session.
+// Body parsing (forms and JSON) and sessions. Registered before the routers so they get req.body and req.session.
+// SESSION_SECRET is required in production; in development a fallback secret is used with a warning.
 app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+
+const isProduction = process.env.NODE_ENV === 'production';
+const sessionSecret = process.env.SESSION_SECRET
+
+if (!sessionSecret) {
+    if (isProduction) {
+        throw new Error('SESSION_SECRET must be set in production');
+    }
+    console.warn('SESSION_SECRET is not set. Using an insecure development secret.');
+}
 app.use(session({
-    secret: process.env.SESSION_SECRET || 'dev-secret-temporal',
+    secret: sessionSecret || 'dev-secret-temporal',
     resave: false,
     saveUninitialized: false,
     cookie: {
