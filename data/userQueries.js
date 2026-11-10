@@ -9,7 +9,9 @@ export function findUserByEmail(email){
 export function createUser({name, email, password}){
     const passwordHash=bcrypt.hashSync(password) //only the hash is stored, never the plain password (default 10 rounds)
     const result = db.prepare(`
-        INSERT INTO users(name, email, password_hash)
+        INSERT INTO users(name, email, passwordHash)
         VALUES(?, ?, ?)`).run(name, email, passwordHash)
     return result.lastInsertRowid //the id SQLite gave the new user
 }
+
+

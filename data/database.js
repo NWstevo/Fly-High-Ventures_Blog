@@ -23,8 +23,8 @@ db.exec(`
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,
-    password_hash TEXT NOT NULL,
-    created_at TEXT NOT NULL DEFAULT (datetime('now')));
+    passwordHash TEXT NOT NULL,
+    createdAt TEXT NOT NULL DEFAULT (datetime('now')));
 
 
     CREATE TABLE IF NOT EXISTS posts(
@@ -32,11 +32,11 @@ db.exec(`
     title TEXT NOT NULL,
     content TEXT NOT NULL,
     category TEXT NOT NULL DEFAULT 'General',
-    author_id INTEGER NOT NULL,
-    created_at TEXT NOT NULL DEFAULT (datetime('now')),
-    updated_at TEXT);
+    authorId INTEGER NOT NULL,
+    createdAt TEXT NOT NULL DEFAULT (datetime('now')),
+    updatedAt TEXT);
 
     `);
 
-// - updated_at is NULL until the post is edited for the first time.
+// - updatedAt is NULL until the post is edited for the first time.
 export default db;

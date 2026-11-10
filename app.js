@@ -1,7 +1,7 @@
 // Entry point: sets up Express, mounts the routers and starts the server (ES modules).
 import express from 'express';
-import post_route from './routes/posts.js';
-import auth_route from './routes/auth.js';
+import postRoute from './routes/posts.js';
+import authRoute from './routes/auth.js';
 import liveReload from './config/liveReload.js';
 import session from 'express-session';
 
@@ -41,8 +41,8 @@ app.use(session({
 }));
 
 // Feature routers.
-app.use(post_route)
-app.use(auth_route)
+app.use(postRoute)
+app.use(authRoute)
 
 // Starts the server on http://localhost:3000.
 app.listen(port, ()=>{

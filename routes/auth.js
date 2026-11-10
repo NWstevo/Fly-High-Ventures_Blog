@@ -50,7 +50,7 @@ router.post('/login', (req,res)=>{
 
     // The same error is sent for a wrong email or password, so nobody can find out which emails are registered.
     const user = findUserByEmail(email);
-    const passwordMatches = user && bcrypt.compareSync(password, user.password_hash);
+    const passwordMatches = user && bcrypt.compareSync(password, user.passwordHash);
     if (!passwordMatches){
         return res.status(401).send('Incorrect email or password!')
     }
