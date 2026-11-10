@@ -11,7 +11,6 @@ import { requireAuth } from "../middlewares/requireAuth.js";
 
     // requireAuth runs first, so this handler only runs for logged-in users. Category falls back to 'General'.
     router.post('/posts', requireAuth, (req, res)=>{
-        console.log('POST /posts reached route');
         const title = req.body.title?.trim();
         const content = req.body.content?.trim();
         const category = req.body.category?.trim()|| 'General';
@@ -26,7 +25,7 @@ import { requireAuth } from "../middlewares/requireAuth.js";
             category,
             authorId: req.session.userId,
         })
-        res.status(200).json(getPostById(id))
+        res.status(201).json(getPostById(id))
     })
 
     // Returns all posts as JSON; ?category=... filters by category.
