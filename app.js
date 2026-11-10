@@ -40,7 +40,7 @@ app.use(session({
     }
 }));
 
-// Feature routers. GET '/' in posts.js never runs: app.get('/') above handles it first.
+// Feature routers.
 app.use(post_route)
 app.use(auth_route)
 
