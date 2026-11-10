@@ -34,9 +34,12 @@ db.exec(`
     category TEXT NOT NULL DEFAULT 'General',
     authorId INTEGER NOT NULL,
     createdAt TEXT NOT NULL DEFAULT (datetime('now')),
-    updatedAt TEXT);
+    updatedAt TEXT,
+    FOREIGN KEY (authorId) REFERENCES users(id) ON DELETE CASCADE);
 
     `);
 
 // - updatedAt is NULL until the post is edited for the first time.
+// - authorId must be an existing user's id; deleting a user also deletes their posts (ON DELETE CASCADE).
+// - CREATE TABLE IF NOT EXISTS never changes a table that already exists, so schema changes here do not reach an existing blog.db.
 export default db;
