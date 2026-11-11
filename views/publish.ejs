@@ -1,0 +1,30 @@
+<%- include('partials/header', { title: 'Publish' }) %>
+
+<main class="container publish_page">
+    <h1>Publish an article</h1>
+
+    <form action="/publish" method="post" class="publish_form">
+        <input type="text" name="title" placeholder="Title" required>
+
+        <select name="category">
+            <option value="General">General</option>
+            <option value="Article">Article</option>
+            <option value="IT News">IT News</option>
+            <option value="Motivation">Motivation</option>
+            <option value="Innovation">Innovation</option>
+        </select>
+
+        <%# Optional cover image. Not uploaded yet: the form needs enctype="multipart/form-data" and the route needs multer.
+            `accept` only filters the file picker; the server still has to check the file type. %>
+        <label class="publish_image">
+            Cover image (optional)
+            <input type="file" name="image" accept="image/png, image/jpeg, image/webp">
+        </label>
+
+        <textarea name="content" rows="10" placeholder="Write your article" required></textarea>
+
+        <button type="submit">Publish</button>
+    </form>
+</main>
+
+<%- include('partials/footer') %>

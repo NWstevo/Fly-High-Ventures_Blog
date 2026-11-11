@@ -27,3 +27,9 @@ export function updatePost(id, { title, content, category}){
 export function deletePost(id){
     return db.prepare(`DELETE FROM posts WHERE id = ?`).run(id); //removes the post for good
 }
+
+export function getPostsByAuthor(authorId) {
+  return db
+    .prepare('SELECT * FROM posts WHERE authorId = ? ORDER BY createdAt DESC')
+    .all(authorId);
+}

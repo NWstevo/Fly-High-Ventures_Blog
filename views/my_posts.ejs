@@ -1,0 +1,32 @@
+<%- include('partials/header', { title: 'My Posts' }) %>
+
+<%# The logged-in user's own posts. `posts` comes from GET /posts in routes/posts.js. %>
+<main class="container my_posts">
+    <div class="my_posts_header">
+        <h1>My posts</h1>
+        <a class="buttons" href="/publish">Publish article</a>
+    </div>
+
+    <% if (posts.length === 0) { %>
+        <p class="my_posts_empty">You haven't published anything yet.</p>
+    <% } else { %>
+        <%# Same grid and card markup as the home page, so the card styles in style.css apply. %>
+        <div class="news_cards">
+            <% posts.forEach(post => { %>
+                <article class="card">
+                    <div class="card_text">
+                        <span class="card_tag"><%= post.category %></span>
+                        <h3><%= post.title %></h3>
+                        <p class="card_excerpt"><%= post.content %></p>
+                        <p class="card_meta">
+                            Published <%= post.createdAt %>
+                            <% if (post.updatedAt) { %>· Edited <%= post.updatedAt %><% } %>
+                        </p>
+                    </div>
+                </article>
+            <% }) %>
+        </div>
+    <% } %>
+</main>
+
+<%- include('partials/footer') %>
