@@ -4,6 +4,10 @@
         <header class="Header container">
             <div class="hero_title container">
                 <p id="hero_text">Fly-High <span id="hero_blog">Blog</span></p>
+                <%# Greeting for logged-in users; `user` comes from middlewares/loadUser.js. %>
+                <% if (locals.user) { %>
+                <p id="hero_greeting">Hi <%= user.name %></p>
+                <% } %>
                 <div id="styled_hero_text">Ventures</div>
                 <p id="intro">Make your ideas an experience by being current with Tech TRENDS!</p>
                 <div class="publish">
@@ -11,10 +15,13 @@
                     <a class="buttons" href="#" id="get_started">Get Started</a>
                 </div>
             </div>
+            <%# Only shown when nobody is logged in; logged-in users get a greeting in the hero above and Logout in the nav bar (partials/header.ejs). %>
+            <% if (!locals.user) { %>
             <div class="signup ">
                 <button class="buttons" type="submit" id="login">Login</button>
                 <button class="buttons" type="submit" id="signup">Sign Up</button>
             </div>
+            <% } %>
         </header>
 
         <%# Login/sign-up modal, opened by script.js. Forms POST to routes/auth.js; input names become req.body keys. %>

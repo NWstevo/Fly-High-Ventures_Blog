@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %> | Fly High Ventures Blog</title>
+    <%# Dancing Script: handwritten font for the hero greeting (#hero_greeting in style.css). %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
@@ -28,6 +32,12 @@
                     <button type="submit">🔎</button>
                 </form>
             </search>
+            <%# Logout is a POST route (routes/auth.js), so it needs a form rather than a link. Only shown when logged in. %>
+            <% if (locals.user) { %>
+            <form action="/logout" method="post" class="nav_logout">
+                <button type="submit">Logout</button>
+            </form>
+            <%}%>
             <select id="language">
                 <option value="en">🇬🇧</option>
             </select>

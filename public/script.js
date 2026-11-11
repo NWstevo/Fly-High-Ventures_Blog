@@ -69,12 +69,13 @@ function closeModal() {
 
 // Only the home page has the modal, so skip this on other pages (e.g. the article page)
 if (modal) {
-  document.getElementById('login').addEventListener('click', (event) => {
+  // The Login and Sign Up buttons are only rendered when nobody is logged in, so ?. skips them when they are missing.
+  document.getElementById('login')?.addEventListener('click', (event) => {
     event.preventDefault();
     openModal('login');
   });
 
-  document.getElementById('signup').addEventListener('click', (event) => {
+  document.getElementById('signup')?.addEventListener('click', (event) => {
     event.preventDefault();
     openModal('signup');
   });

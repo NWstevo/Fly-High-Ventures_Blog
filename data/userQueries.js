@@ -14,4 +14,8 @@ export function createUser({name, email, password}){
     return result.lastInsertRowid //the id SQLite gave the new user
 }
 
-
+export function getUserById(id){
+    return db
+        .prepare('SELECT id, name, createdAt FROM users WHERE id =?')
+        .get(id); //no passwordHash: this user object is sent to the views
+}
