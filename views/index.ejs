@@ -12,7 +12,7 @@
                 <p id="intro">Make your ideas an experience by being current with Tech TRENDS!</p>
                 <div class="publish">
                     <p id="signup_text">Want to publish your article? </p>
-                    <a class="buttons" href="#" id="get_started">Get Started</a>
+                    <a class="buttons" href="<%=locals.user ? '/publish' : '#' %>" id="get_started">Get Started</a>
                 </div>
             </div>
             <%# Only shown when nobody is logged in; logged-in users get a greeting in the hero above and Logout in the nav bar (partials/header.ejs). %>
@@ -24,7 +24,9 @@
             <% } %>
         </header>
 
-        <%# Login/sign-up modal, opened by script.js. Forms POST to routes/auth.js; input names become req.body keys. %>
+        <%# Login/sign-up modal, opened by script.js. Forms POST to routes/auth.js; input names become req.body keys.
+            Only rendered for signed-out visitors; script.js skips its modal code when it is missing. %>
+        <% if (!locals.user) { %>
         <div id="auth_modal" class="modal" hidden>
             <div class="auth_box">
                 <button type="button" id="auth_close" class="auth_modal_close" aria-label="Close">×</button>
@@ -50,6 +52,7 @@
                 
             </div>
         </div>
+        <% } %>
         
         <div class="article container"> <!--This will be animated to scroll from left to right at 0.5 secs-->
             <div class="categories">
@@ -59,10 +62,6 @@
                 <a class="buttons" href="#">Personal Articles</a>
                 <a class="buttons" href="#">Opportunitiy pathways</a>
                 <form action="search" method="get"><input type="text" name="article_search" placeholder="search Articles"></form>
-            </div>
-
-            <div class="headline_cards">
-                <img src="#" alt="headline image"><!--this will be for the pictures and their titles underneath-->
             </div>
         </div>
 
