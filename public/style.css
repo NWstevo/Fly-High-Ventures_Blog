@@ -10,8 +10,12 @@
     padding: 0;
     box-sizing: border-box;
 }
+/* Sticky footer: the body is at least one screen tall and lays its children out in a column,
+   so .footer's margin-top: auto pushes it to the bottom on short pages. */
 body{
-    display: block;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
@@ -355,8 +359,7 @@ body{
     text-align: center;
     width: 100%;
     min-height: 200px;
-    position:relative;
-    bottom: 0;
+    margin-top: auto; /* takes up the free space above it, so it sits at the bottom of the screen */
     border: 2px solid #0b2a5b;
 
 }
@@ -469,4 +472,156 @@ body{
 /* Same fix as .modal[hidden]: `display: flex` above would keep the hidden form visible. */
 .panel[hidden]{
     display: none;
+}
+
+/* PUBLISH PAGE (views/publish.ejs) */
+/* White card centred on the page, styled like the news cards (blue top border, soft navy shadow). */
+.publish_page{
+    width: 100%; /* in the body's flex column, auto margins would otherwise shrink it to fit its content */
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border: none;
+    border-top: 4px solid #1e88e5;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(11, 42, 91, 0.15);
+}
+.publish_page h1{
+    margin-bottom: 20px;
+    color: #0b2a5b;
+    border-bottom: 3px solid #f5b300;
+    padding-bottom: 10px;
+}
+
+.publish_form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.publish_form input,
+.publish_form select,
+.publish_form textarea{
+    width: 100%;
+    padding: 10px 12px;
+    font-family: inherit;
+    font-size: 1rem;
+    color: #0b2a5b;
+    background-color: #f4f7fb;
+    border: 2px solid #dbe4f0;
+    border-radius: 5px;
+}
+/* Gold outline on the field being typed in. */
+.publish_form input:focus,
+.publish_form select:focus,
+.publish_form textarea:focus{
+    outline: none;
+    border-color: #f5b300;
+    background-color: #ffffff;
+}
+.publish_form textarea{
+    resize: vertical; /* stops the textarea being dragged wider than the card */
+    line-height: 1.5;
+}
+
+/* Cover image field: label text above the file input. */
+.publish_image{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-weight: bold;
+}
+.publish_image input{
+    font-weight: normal;
+    cursor: pointer;
+}
+/* The browser's "Choose file" button, styled like the tags on the news cards. */
+.publish_image input::file-selector-button{
+    margin-right: 10px;
+    padding: 5px 12px;
+    background-color: #0b2a5b;
+    color: #f5b300;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.publish_image input::file-selector-button:hover{
+    background-color: #f5b300;
+    color: #0b2a5b;
+}
+
+/* Same look as .buttons (navy with blue border, gold on hover). */
+.publish_form button{
+    align-self: flex-end;
+    padding: 8px 25px;
+    background-color: #0b2a5b;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffffff;
+    border: 2px solid #1e88e5;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.publish_form button:hover{
+    border-color: #f5b300;
+    color: #f5b300;
+}
+
+/* Use the full width on phones. */
+@media (max-width: 600px){
+    .publish_page{
+        width: auto; /* 100% plus the side margins would overflow the screen */
+        margin: 20px 16px;
+        padding: 20px;
+    }
+    .publish_form button{
+        align-self: stretch;
+    }
+}
+
+
+/* MY POSTS PAGE (views/my_posts.ejs) */
+/* Same width as .news_cards so the heading lines up with the cards below it. */
+.my_posts{
+    width: 100%; /* same reason as .publish_page */
+    max-width: 1100px;
+    margin: 40px auto;
+    border: none;
+}
+.my_posts_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* the button moves under the heading on narrow screens */
+    gap: 15px;
+    margin: 0 15px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #f5b300;
+}
+.my_posts_header h1{
+    color: #0b2a5b;
+}
+.my_posts_empty{
+    margin: 30px 15px;
+    padding: 30px;
+    text-align: center;
+    color: #555555;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(11, 42, 91, 0.15);
+}
+
+/* Shows the first 3 lines of the article and cuts the rest off with "…". */
+.card_excerpt{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+}
+.card_text .card_meta{
+    margin-bottom: 0;
+    font-size: 0.85rem;
+    color: #1e88e5;
 }
