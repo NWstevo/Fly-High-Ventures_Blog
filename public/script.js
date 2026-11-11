@@ -3,12 +3,14 @@
 // elements already exist when these querySelector calls run.
 
 // Category filter: highlights the clicked category button.
+// Buttons with a real link (e.g. Personal Articles -> /posts) are left alone so the browser follows it.
 const categoryButtons = document.querySelectorAll('.categories .buttons');
 
 categoryButtons.forEach(button => {
   button.addEventListener('click', (event) => {
-    event.preventDefault(); // stop the href="#" from jumping back to the top of the page
+    if (button.getAttribute('href') !== '#') return // a real link: let the browser open it
 
+    event.preventDefault(); // stop the href="#" from jumping back to the top of the page
     categoryButtons.forEach(b => b.classList.remove('active'));
     button.classList.add('active');
   });

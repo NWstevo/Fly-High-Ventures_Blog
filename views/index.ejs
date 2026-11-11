@@ -59,7 +59,10 @@
                 <a class="buttons" href="#">All</a>
                 <a class="buttons" href="#">Tech News</a>
                 <a class="buttons" href="#">Innovations</a>
-                <a class="buttons" href="#">Personal Articles</a>
+                <%# Only for logged-in users: links to their own posts (GET /posts in routes/posts.js, which needs a login). %>
+                <% if (locals.user) { %>
+                <a class="buttons" href="/posts">Personal Articles</a>
+                <% } %>
                 <a class="buttons" href="#">Opportunitiy pathways</a>
                 <form action="search" method="get"><input type="text" name="article_search" placeholder="search Articles"></form>
             </div>
