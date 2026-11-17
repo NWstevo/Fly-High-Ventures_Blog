@@ -2,6 +2,7 @@
 // GET /api/posts       all posts as JSON (public)
 // GET /api/posts/:id   one post as JSON (public)
 // GET /posts           the signed-in user's own posts, as a page
+// GET /posts/:id       one post, as a page (public)
 // POST /posts          create a post (logged in)
 // PUT/DELETE /posts/:id edit or delete (logged in, author only)
 // GET/POST /publish    the publish form and its submission
@@ -33,6 +34,17 @@ router.get('/api/posts/:id', (req, res) => {
 router.get('/posts', requireAuth, (req, res) => {
     const posts = getPostsByAuthor(req.session.userId);
     res.render('my_posts', { title: 'My Posts', posts });
+});
+
+// Public: one post as a page (the "Read more" link on the home page cards).
+router.get('/posts/:id', (req, res) => {
+    const post = getPostById(Number(req.params.id));
+
+    if (!post) {
+        return res.status(404).send('Post not found');
+    }
+
+    res.render('post', { title: post.title, post });
 });
 
 // Create a post. requireAuth runs first, so this only runs for logged-in users.
@@ -121,7 +133,5 @@ router.post('/publish', requireAuth, (req, res) => {
 
     res.redirect('/');
 });
-
-
 
 export default router;

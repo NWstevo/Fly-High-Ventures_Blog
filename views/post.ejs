@@ -1,0 +1,20 @@
+<%- include('partials/header', { title: title }) %>
+
+<%# One post, opened from "Read more" on a home page card. `post` comes from GET /posts/:id in routes/posts.js. %>
+<main class="container my_posts">
+    <div class="my_posts_header">
+        <h1><%= post.title %></h1>
+        <a class="buttons" href="/">← Back to articles</a>
+    </div>
+
+    <article class="post_body">
+        <span class="card_tag"><%= post.category %></span>
+        <p class="post_meta">
+            Published <%= post.createdAt %>
+            <% if (post.updatedAt) { %>· Edited <%= post.updatedAt %><% } %>
+        </p>
+        <p class="post_content"><%= post.content %></p>
+    </article>
+</main>
+
+<%- include('partials/footer') %>
