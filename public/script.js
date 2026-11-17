@@ -69,6 +69,11 @@ if (modal) {
   modal.addEventListener('click', (event) => {
     if (event.target === modal) closeModal();
   });
+
+  // requireAuth redirects logged-out visitors to /?login=1, so open the login form for them.
+  if (new URLSearchParams(location.search).get('login')) {
+    openModal('login');
+  }
 }
 
 // My Posts: the Delete button sends DELETE /posts/:id and removes the card once the server answers 204.
