@@ -222,7 +222,7 @@ body{
 }
 
 
-/* REVIEW: Set on the selected category by public/script.js. */
+/* The current category's button. index.ejs adds .active using `activeCategory` from app.js. */
 .categories .buttons.active {
   background-color: #333;
   color: #fff;

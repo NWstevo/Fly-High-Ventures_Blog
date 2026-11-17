@@ -55,78 +55,44 @@
         <% } %>
         
         <div class="article container"> <!--This will be animated to scroll from left to right at 0.5 secs-->
+            <%# Category filter: each link reloads / with ?category=..., which app.js passes to getAllPosts().
+                The value must match the <option value> in publish.ejs exactly (the database comparison is case-sensitive).
+                `activeCategory` (from app.js) marks the current category's button as .active. %>
             <div class="categories">
-                <a class="buttons" href="#">All</a>
-                <a class="buttons" href="#">Tech News</a>
-                <a class="buttons" href="#">Innovations</a>
+                <a class="buttons <%= activeCategory === 'All' ? 'active' : '' %>" href="/">All</a>
+                <a class="buttons <%= activeCategory === 'Tech news' ? 'active' : '' %>" href="/?category=Tech news">Tech News</a>
+                <a class="buttons <%= activeCategory === 'Innovation' ? 'active' : '' %>" href="/?category=Innovation">Innovations</a>
                 <%# Only for logged-in users: links to their own posts (GET /posts in routes/posts.js, which needs a login). %>
                 <% if (locals.user) { %>
                 <a class="buttons" href="/posts">Personal Articles</a>
                 <% } %>
-                <a class="buttons" href="#">Opportunitiy pathways</a>
+                <a class="buttons <%= activeCategory === 'Opportunity pathways' ? 'active' : '' %>" href="/?category=Opportunity pathways">Opportunity pathways</a>
                 <form action="search" method="get"><input type="text" name="article_search" placeholder="search Articles"></form>
             </div>
         </div>
 
         <main class="container">
             <div class="news">
-                <%# Placeholder cards, to be replaced by a loop over posts from the database. %>
+                <%# One card per post. `posts` comes from GET / in app.js (all posts, or one category).
+                    Posts have no image yet, so the cards cycle through the images in public/images. %>
+                <% if (posts.length === 0) { %>
+                    <p class="my_posts_empty">No articles in this category yet.</p>
+                <% } else { %>
+                <% const images = ['fly-high-1.jpeg', 'fly-high-2.jpeg', 'fly-high-bg.jpeg'] %>
                 <div class="news_cards">
+                    <% posts.forEach((post, i) => { %>
                     <div class="card">
-                        <img src="images/fly-high-2.jpeg" alt="news image 1">
+                        <img src="/images/<%= images[i % images.length] %>" alt="<%= post.title %>">
                         <div class="card_text">
-                            <span class="card_tag">Tech News</span>
-                            <h3>News headline 1 goes here</h3>
-                            <p>Short highlight of the article. One or two sentences to catch the reader's attention.</p>
-                            <a href="#">Read more →</a>
+                            <span class="card_tag"><%= post.category %></span>
+                            <h3><%= post.title %></h3>
+                            <p class="card_excerpt"><%= post.content %></p>
+                            <a href="/posts/<%= post.id %>">Read more →</a>
                         </div>
                     </div>
-                    <div class="card">
-                        <img src="images/fly-high-1.jpeg" alt="news image 2">
-                        <div class="card_text">
-                            <span class="card_tag">Personal</span>
-                            <h3>News headline 2 goes here</h3>
-                            <p>Short highlight of the article. One or two sentences to catch the reader's attention.</p>
-                            <a href="#">Read more →</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="images/fly-high-bg.jpeg" alt="news image 3">
-                        <div class="card_text">
-                            <span class="card_tag">Opportunities</span>
-                            <h3>News headline 3 goes here</h3>
-                            <p>Short highlight of the article. One or two sentences to catch the reader's attention.</p>
-                            <a href="#">Read more →</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="images/fly-high-2.jpeg" alt="news image 4">
-                        <div class="card_text">
-                            <span class="card_tag">Innovations</span>
-                            <h3>News headline 4 goes here</h3>
-                            <p>Short highlight of the article. One or two sentences to catch the reader's attention.</p>
-                            <a href="#">Read more →</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="images/fly-high-1.jpeg" alt="news image 5">
-                        <div class="card_text">
-                            <span class="card_tag">Tech News</span>
-                            <h3>News headline 5 goes here</h3>
-                            <p>Short highlight of the article. One or two sentences to catch the reader's attention.</p>
-                            <a href="#">Read more →</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="images/fly-high-bg.jpeg" alt="news image 6">
-                        <div class="card_text">
-                            <span class="card_tag">Personal</span>
-                            <h3>News headline 6 goes here</h3>
-                            <p>Short highlight of the article. One or two sentences to catch the reader's attention.</p>
-                            <a href="#">Read more →</a>
-                        </div>
-                    </div>
+                    <% }) %>
                 </div>
+                <% } %>
                 <div class="videos">
                     <!--Here will be for embedding video links-->
                 </div>

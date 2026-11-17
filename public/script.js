@@ -2,20 +2,6 @@
 // It is loaded at the end of <body> (partials/footer.ejs), so all the HTML
 // elements already exist when these querySelector calls run.
 
-// Category filter: highlights the clicked category button.
-// Buttons with a real link (e.g. Personal Articles -> /posts) are left alone so the browser follows it.
-const categoryButtons = document.querySelectorAll('.categories .buttons');
-
-categoryButtons.forEach(button => {
-  button.addEventListener('click', (event) => {
-    if (button.getAttribute('href') !== '#') return // a real link: let the browser open it
-
-    event.preventDefault(); // stop the href="#" from jumping back to the top of the page
-    categoryButtons.forEach(b => b.classList.remove('active'));
-    button.classList.add('active');
-  });
-});
-
 // Login/sign-up modal. One dialog holds both forms; the tabs switch which one is shown.
 // index.ejs only renders the modal for signed-out visitors, so this is skipped when
 // someone is logged in and on pages without it (e.g. the article page).
