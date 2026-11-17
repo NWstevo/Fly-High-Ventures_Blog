@@ -1,0 +1,14 @@
+<%# Error page. Rendered by the auth and post routes when a form fails, and by the 404/500 handlers in app.js.
+    `title` is the heading and tab title, `message` tells the user what went wrong. %>
+<%- include('partials/header', { title: title }) %>
+
+<main class="container my_posts">
+    <div class="my_posts_header">
+        <h1><%= title %></h1>
+    </div>
+
+    <p class="my_posts_empty"><%= message %></p>
+    <a class="buttons" href="/">← Back to home</a>
+</main>
+
+<%- include('partials/footer') %>

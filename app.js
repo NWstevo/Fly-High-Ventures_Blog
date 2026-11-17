@@ -62,6 +62,18 @@ app.get('/article', (req,res)=>{
 app.use(postRoute)
 app.use(authRoute)
 
+// 404: runs only when no route above matched the URL. Must stay after all the routers.
+app.use((req, res) => {
+    res.status(404).render('error', { title: 'Page not found', message: 'The page you are looking for does not exist.' });
+});
+
+// 500: Express calls this when a route throws an error. The four parameters are what make it an error handler,
+// so `next` must stay even though it is unused. The details are logged for us, never shown to the user.
+app.use((err, req, res, next) => {
+    console.error(err);
+    res.status(500).render('error', { title: 'Something went wrong', message: 'Please try again later.' });
+});
+
 // Starts the server on http://localhost:3000.
 app.listen(port, ()=>{
     console.log("server is running on port " + port)

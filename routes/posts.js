@@ -41,7 +41,7 @@ router.get('/posts/:id', (req, res) => {
     const post = getPostById(Number(req.params.id));
 
     if (!post) {
-        return res.status(404).send('Post not found');
+        return res.status(404).render('error', { title: 'Post not found', message: 'This post does not exist or has been deleted.' });
     }
 
     res.render('post', { title: post.title, post });
@@ -121,7 +121,7 @@ router.post('/publish', requireAuth, (req, res) => {
     const category = req.body.category?.trim() || 'General';
 
     if (!title || !content) {
-        return res.status(400).send('Title and content are required');
+        return res.status(400).render('error', { title: 'Could not publish', message: 'Title and content are required' });
     }
 
     createPost({

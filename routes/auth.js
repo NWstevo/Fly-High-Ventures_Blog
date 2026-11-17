@@ -21,13 +21,13 @@ router.post('/signup', (req,res)=>{
 
     // Validation: stop with an error message if the form data is not usable.
     if (!name || !email || !password){
-        return res.status(400).send('Fill all required fields')
+        return res.status(400).render('error', { title: 'Sign-up failed', message: 'Fill all required fields' });
     }
     if (password.length < 8){
-        return res.status(400).send('Password must be at least 8 characters')
+        return res.status(400).render('error', { title: 'Sign-up failed', message: 'Password must be at least 8 characters' });
     }
-     if (findUserByEmail(email)) {
-    return res.status(409).send('An account with this email already exists');
+    if (findUserByEmail(email)) {
+        return res.status(409).render('error', { title: 'Sign-up failed', message: 'An account with this email already exists' });
     }
 
     // createUser hashes the password and returns the new user's id.
@@ -45,14 +45,14 @@ router.post('/login', (req,res)=>{
     const email = req.body.email?.trim().toLowerCase();
     const password = req.body.password;
     if (!email || !password){
-        return res.status(400).send('Email and Password are required')
+        return res.status(400).render('error', { title: 'Login failed', message: 'Email and password are required' });
     };
 
     // The same error is sent for a wrong email or password, so nobody can find out which emails are registered.
     const user = findUserByEmail(email);
     const passwordMatches = user && bcrypt.compareSync(password, user.passwordHash);
     if (!passwordMatches){
-        return res.status(401).send('Incorrect email or password!')
+        return res.status(401).render('error', { title: 'Login failed', message: 'Incorrect email or password' });
     }
 
     // Storing the id in the session is what keeps the user logged in.
