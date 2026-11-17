@@ -84,3 +84,26 @@ if (modal) {
     if (event.target === modal) closeModal();
   });
 }
+
+// My Posts: the Delete button sends DELETE /posts/:id and removes the card once the server answers 204.
+const postsList = document.querySelector('.my_post_list');
+
+if (postsList){
+  postsList.addEventListener('click', async(event)=>{
+    const button = event.target.closest('.delete_post');
+    if (!button) return;
+
+    const card = button.closest('[data-post-id]');
+    const id = card.dataset.postId;
+
+    if (!confirm('Delete this post? (Action is irreversible!)')) return;
+
+    const response = await fetch(`/posts/${id}`, {method: 'DELETE'});
+
+    if (response.status === 204){
+      card.remove();
+    }else{
+      alert('Could not delete post.')
+    }
+  })
+}

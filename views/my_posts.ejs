@@ -10,19 +10,17 @@
     <% if (posts.length === 0) { %>
         <p class="my_posts_empty">You haven't published anything yet.</p>
     <% } else { %>
-        <%# Same grid and card markup as the home page, so the card styles in style.css apply. %>
-        <div class="news_cards">
+        <%# Uses the home page's .news_cards grid and .card / .card_tag styles. `my_post_list` and `data-post-id` let public/script.js delete a card. %>
+        <div class="news_cards my_post_list">
             <% posts.forEach(post => { %>
-                <article class="card">
-                    <div class="card_text">
+                <article class="card" data-post-id="<%= post.id %>">
                         <span class="card_tag"><%= post.category %></span>
                         <h3><%= post.title %></h3>
-                        <p class="card_excerpt"><%= post.content %></p>
-                        <p class="card_meta">
-                            Published <%= post.createdAt %>
-                            <% if (post.updatedAt) { %>· Edited <%= post.updatedAt %><% } %>
-                        </p>
-                    </div>
+                        <p><%= post.content %></p>
+                        <small>Published <%= post.createdAt %></small>
+                        <% if (post.updatedAt) { %>
+                        <small>· Edited <%= post.updatedAt %></small> <% } %><br>
+                        <button type="button" class="delete_post">Delete</button>
                 </article>
             <% }) %>
         </div>
