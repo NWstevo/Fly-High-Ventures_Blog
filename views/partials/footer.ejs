@@ -9,23 +9,26 @@
                     <li>Germany</li>
                 </ul>
             </div>
+            <%# Same category links as the filter buttons in index.ejs: each ?category= value must match an
+                <option value> in publish.ejs exactly. Personal (My Posts) is only shown to logged-in users. %>
             <div class="footer_column" id="footer_nav">
                 <h3>Explore</h3>
                 <ul class="footer_list">
                     <li><a href="/">Home</a></li>
-                    <li><a href="#">Articles</a></li>
-                    <li><a href="#">News</a></li>
-                    <% if (locals.user){%>
-                    <li><a href="/posts" class="nav_link">Personal</a></li><% } %>
-                    <li><a href="#">Innovations</a></li>
-                    <li><a href="#">Opportunities</a></li>
+                    <li><a href="/?category=Tech news">Tech News</a></li>
+                    <% if (locals.user) { %>
+                    <li><a href="/posts">Personal</a></li>
+                    <% } %>
+                    <li><a href="/?category=Innovation">Innovations</a></li>
+                    <li><a href="/?category=Opportunity pathways">Opportunities</a></li>
                 </ul>
             </div>
+            <%# Placeholder contact details. %>
             <div class="footer_column" id="footer_contact">
                 <h3>Contact</h3>
                 <ul class="footer_list">
-                    <li>Email: <a href="mailto:hello@gmail.com">hello@gmail.com</a></li>
-                    <li>Phone: <a href="tel:+495551426835">+49 555 1426835</a></li>
+                    <li>Email: <a href="mailto:example@gmail.com">Email us</a></li>
+                    <li>Phone: <a href="tel:+491630000000">+49 163 0000000</a></li>
                     <li>Mon – Fri, 9:00 – 17:00</li>
                 </ul>
             </div>
