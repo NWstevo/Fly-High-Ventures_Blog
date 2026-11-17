@@ -15,7 +15,8 @@
                     <li><a href="/">Home</a></li>
                     <li><a href="#">Articles</a></li>
                     <li><a href="#">News</a></li>
-                    <li><a href="#">Personal</a></li>
+                    <% if (locals.user){%>
+                    <li><a href="/posts" class="nav_link">Personal</a></li><% } %>
                     <li><a href="#">Innovations</a></li>
                     <li><a href="#">Opportunities</a></li>
                 </ul>

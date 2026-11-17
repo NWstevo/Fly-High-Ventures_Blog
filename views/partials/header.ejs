@@ -20,7 +20,9 @@
             <a class="nav_link" href="/">Home</a>
             <a class="nav_link" href="#">Articles</a>
             <a class="nav_link" href="#">News</a>
-            <a class="nav_link" href="#">Personal</a>
+            <% if(locals.user) { %>
+                <a class="nav_link" href="/posts">Personal</a>
+            <% } %>
             <a class="nav_link" href="#">Innovations</a>
             <a class="nav_link" href="#">Opportunities</a>
         </div>
