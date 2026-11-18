@@ -1,7 +1,10 @@
 <%- include('partials/header', { title: 'Publish' }) %>
 
 <main class="container publish_page">
+    <%# Close: leaves the form without publishing and goes back to My Posts. A link, not a button, because it opens another page. %>
+    <a class="publish_close" href="/posts" aria-label="Close">×</a>
     <h1>Publish an article</h1>
+
 
     <form action="/publish" method="post" class="publish_form">
         <input type="text" name="title" placeholder="Title" required>

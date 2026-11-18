@@ -4,6 +4,7 @@
     and the form submits to POST /posts/:id/edit. Same layout and styles as publish.ejs. %>
 
 <main class="container publish_page">
+        <a class="publish_close" href="/posts/<%= post.id %>" aria-label="Close">×</a>
     <h1>Edit an article</h1>
 
     <form action="/posts/<%= post.id %>/edit" method="post" class="publish_form">
