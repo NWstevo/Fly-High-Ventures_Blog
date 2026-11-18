@@ -10,7 +10,8 @@
     <% if (posts.length === 0) { %>
         <p class="my_posts_empty">You haven't published anything yet.</p>
     <% } else { %>
-        <%# Uses the home page's .news_cards grid and .card / .card_tag styles. `my_post_list` and `data-post-id` let public/script.js delete a card. %>
+        <%# Uses the home page's .news_cards grid and .card / .card_tag styles. Each card has Edit (GET /posts/:id/edit) and Delete;
+            `my_post_list` and `data-post-id` let public/script.js delete a card. %>
         <div class="news_cards my_post_list">
             <% posts.forEach(post => { %>
                 <article class="card" data-post-id="<%= post.id %>">
@@ -20,7 +21,8 @@
                         <small>Published <%= post.createdAt %></small>
                         <% if (post.updatedAt) { %>
                         <small>· Edited <%= post.updatedAt %></small> <% } %><br>
-                        <button type="button" class="delete_post">Delete</button>
+                        <button type="button" class="delete_post buttons">Delete</button>
+                        <a class="buttons" href="/posts/<%= post.id %>/edit">Edit</a>
                 </article>
             <% }) %>
         </div>
