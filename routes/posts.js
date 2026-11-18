@@ -5,11 +5,13 @@
 // GET /posts/:id       one post, as a page (public)
 // POST /posts          create a post (logged in)
 // PUT/DELETE /posts/:id edit or delete (logged in, author only)
+// GET/POST /posts/:id/edit  the edit form and its submission (logged in, author only)
 // GET/POST /publish    the publish form and its submission
 import express from "express";
 
 import { getAllPosts, getPostById, getPostsByAuthor, createPost, deletePost, updatePost } from "../data/postQueries.js";
 import { requireAuth } from "../middlewares/requireAuth.js";
+import { requirePostAuthor } from "../middlewares/requirePostAuthor.js";
 
 const router = express.Router();
 
@@ -68,17 +70,9 @@ router.post('/posts', requireAuth, (req, res) => {
     res.status(201).json(getPostById(id));
 });
 
-// Edit a post. 404 if it does not exist, 403 if the logged-in user is not its author.
-router.put('/posts/:id', requireAuth, (req, res) => {
-    const post = getPostById(Number(req.params.id));
-
-    if (!post) {
-        return res.status(404).json({ error: 'Post not found' });
-    }
-
-    if (post.authorId !== req.session.userId) {
-        return res.status(403).json({ error: 'You can only edit your own posts' });
-    }
+// Edit a post (JSON). requirePostAuthor has already checked that the post exists and belongs to the logged-in user.
+router.put('/posts/:id', requireAuth, requirePostAuthor, (req, res) => {
+    const post = req.post;
 
     // ?? keeps the old value if the field is not sent at all
     const title = req.body.title?.trim() ?? post.title;
@@ -93,17 +87,29 @@ router.put('/posts/:id', requireAuth, (req, res) => {
     res.json(getPostById(post.id));
 });
 
-// Delete a post, with the same 404/403 checks as editing. 204 means it worked and there is nothing to send back.
-router.delete('/posts/:id', requireAuth, (req, res) => {
-    const post = getPostById(Number(req.params.id));
+// Edit form: only the author can open it (requirePostAuthor), and it is pre-filled with the post's current values.
+router.get('/posts/:id/edit', requireAuth, requirePostAuthor, (req, res) => {
+    res.render('edit-post', { title: 'Edit Post', post: req.post });
+});
 
-    if (!post) {
-        return res.status(404).json({ error: 'Post not found' });
+// The edit form submits here: updates the post and redirects to its page. requirePostAuthor checks the author first.
+router.post('/posts/:id/edit', requireAuth, requirePostAuthor, (req, res) => {
+    const post = req.post;
+    const title = req.body.title?.trim() ?? post.title;
+    const content = req.body.content?.trim() ?? post.content;
+    const category = req.body.category?.trim() || post.category;
+
+    if (!title || !content) {
+        return res.status(400).render('error', { title: 'Could not update', message: 'Title and content cannot be empty' });
     }
 
-    if (post.authorId !== req.session.userId) {
-        return res.status(403).json({ error: 'You can only delete your own posts' });
-    }
+    updatePost(post.id, { title, content, category });
+    res.redirect(`/posts/${post.id}`);
+});
+
+// Delete a post. requirePostAuthor checks the author first. 204 means it worked and there is nothing to send back.
+router.delete('/posts/:id', requireAuth, requirePostAuthor, (req, res) => {
+    const post = req.post;
 
     deletePost(post.id);
     res.status(204).end();

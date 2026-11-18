@@ -1,0 +1,25 @@
+<%- include('partials/header', { title: title }) %>
+
+<%# Edit form for one post, pre-filled with its current values. `post` comes from GET /posts/:id/edit in routes/posts.js,
+    and the form submits to POST /posts/:id/edit. Same layout and styles as publish.ejs. %>
+
+<main class="container publish_page">
+    <h1>Edit an article</h1>
+
+    <form action="/posts/<%= post.id %>/edit" method="post" class="publish_form">
+        <input type="text" name="title" placeholder="Title" value="<%= post.title %>" required>
+
+        <select name="category">
+            <option value="General" <%= post.category === 'General' ? 'selected' : '' %>>General</option>
+            <option value="Tech news" <%= post.category === 'Tech news' ? 'selected' : '' %>>Tech News</option>
+            <option value="Innovation" <%= post.category === 'Innovation' ? 'selected' : '' %>>Innovations</option>
+            <option value="Opportunity pathways" <%= post.category === 'Opportunity pathways' ? 'selected' : '' %>>Opportunity pathways</option>
+        </select>
+
+        <textarea name="content" rows="20" placeholder="Write your article" required><%= post.content %></textarea>
+
+        <button type="submit">Save changes</button>
+    </form>
+</main>
+
+<%- include('partials/footer') %>

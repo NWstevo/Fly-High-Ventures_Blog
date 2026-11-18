@@ -5,14 +5,21 @@
     <div class="my_posts_header">
         <h1><%= post.title %></h1>
         <a class="buttons" href="/">← Back to articles</a>
+        <%# Only the post's author sees Edit. `user` comes from middlewares/loadUser.js; the edit routes check the author again. %>
+        <% if (locals.user && user.id === post.authorId) { %>
+            <a class="buttons" href="/posts/<%= post.id %>/edit">Edit</a>
+        <% } %>
     </div>
 
     <article class="post_body">
+        <br>
         <span class="card_tag"><%= post.category %></span>
+        <br>
         <p class="post_meta">
+            <br>
             Published <%= post.createdAt %>
             <% if (post.updatedAt) { %>· Edited <%= post.updatedAt %><% } %>
-        </p>
+        </p><br>
         <p class="post_content"><%= post.content %></p>
     </article>
 </main>
