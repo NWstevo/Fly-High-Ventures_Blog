@@ -11,17 +11,15 @@
         <% } %>
     </div>
 
-    <article class="post_body">
-        <br>
+       <article class="post_body">
         <span class="card_tag"><%= post.category %></span>
-        <br>
         <p class="post_meta">
-            <br>
-            Published <%= post.createdAt %>
+            By <%= post.authorName %> · Published <%= post.createdAt %>
             <% if (post.updatedAt) { %>· Edited <%= post.updatedAt %><% } %>
-        </p><br>
+        </p>
         <p class="post_content"><%= post.content %></p>
     </article>
+
 </main>
 
 <%- include('partials/footer') %>

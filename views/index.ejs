@@ -86,6 +86,7 @@
                         <div class="card_text">
                             <span class="card_tag"><%= post.category %></span>
                             <h3><%= post.title %></h3>
+                            <small class="card_author">By <%= post.authorName %></small>
                             <p class="card_excerpt"><%= post.content %></p>
                             <a href="/posts/<%= post.id %>">Read more →</a>
                         </div>
@@ -93,9 +94,6 @@
                     <% }) %>
                 </div>
                 <% } %>
-                <div class="videos">
-                    <!--Here will be for embedding video links-->
-                </div>
             </div>
 
         </main>

@@ -559,3 +559,23 @@ body{
     font-size: 0.85rem;
     color: #1e88e5;
 }
+
+
+/* SINGLE POST PAGE (views/post.ejs) */
+.post_body{
+    margin: 20px 15px;
+}
+.post_meta{
+    margin: 15px 0;
+    font-size: 0.9rem;
+    color: #0b8dff;
+}
+.post_content{
+    line-height: 1.6;
+    white-space: pre-line; /* keeps the line breaks the author typed */
+}
+.card_author{
+    display: block;
+    margin-bottom: 8px;
+    color: #1e88e5;
+}

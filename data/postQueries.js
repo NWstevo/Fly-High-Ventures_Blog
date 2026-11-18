@@ -1,16 +1,22 @@
 // Database queries for the posts table, used by routes/posts.js.
 import db from './database.js';
 
+// Every post plus its author's name (as authorName), taken from the users table.
+// Only users.name is selected, never users.*, so the password hash is never read here.
+// Both tables have id and createdAt, so the column names are prefixed with posts.
+const POSTS_WITH_AUTHOR = `SELECT posts.*, users.name AS authorName FROM posts JOIN users ON users.id = posts.authorId`;
+
 export function getAllPosts(category){
     if (category){
-        return db.prepare('SELECT * FROM posts WHERE category = ? ORDER BY createdAt DESC').all(category) //a named export that returns all posts in category if it exist
+        return db.prepare(`${POSTS_WITH_AUTHOR} WHERE posts.category = ? ORDER BY posts.createdAt DESC`).all(category) //all posts in that category, newest first
     }
-    return db.prepare('SELECT * FROM posts ORDER BY createdAt DESC').all() //returns all posts if category is false
+    return db.prepare(`${POSTS_WITH_AUTHOR} ORDER BY posts.createdAt DESC`).all() //all posts when no category is given
 }
 
 export function getPostById(id) {
-  return db.prepare('SELECT * FROM posts WHERE id = ?').get(id); //returns one post, or undefined if there is none
+  return db.prepare(`${POSTS_WITH_AUTHOR} WHERE posts.id = ?`).get(id); //one post with its author's name, or undefined if there is none
 }
+
 
 export function createPost({title, content, category, authorId}){
     const result =
