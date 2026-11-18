@@ -54,7 +54,7 @@
         </div>
         <% } %>
         
-        <div class="article container"> <!--This will be animated to scroll from left to right at 0.5 secs-->
+        <div class="article container">
             <%# Category filter: each link reloads / with ?category=..., which app.js passes to getAllPosts().
                 The value must match the <option value> in publish.ejs exactly (the database comparison is case-sensitive).
                 `activeCategory` (from app.js) marks the current category's button as .active. %>
@@ -73,16 +73,26 @@
 
         <main class="container">
             <div class="news">
-                <%# One card per post. `posts` comes from GET / in app.js (all posts, or one category).
-                    Posts have no image yet, so the cards cycle through the images in public/images. %>
+                <%# One card per post. `posts` comes from GET / in app.js (all posts, or one category), and each post
+                    includes `authorName` from the users table (data/postQueries.js).
+                    Posts have no image of their own, so each category gets a fixed picture from public/images.
+                    The keys of `categoryImages` must match the <option value>s in publish.ejs exactly;
+                    any other category (General, or old ones like IT News) uses `defaultImage`. %>
                 <% if (posts.length === 0) { %>
                     <p class="my_posts_empty">No articles in this category yet.</p>
                 <% } else { %>
-                <% const images = ['fly-high-1.jpeg', 'fly-high-2.jpeg', 'fly-high-bg.jpeg'] %>
+                <%
+                    const categoryImages = {
+                        'Tech news': 'tech.jpeg',
+                        'Innovation': 'innovation.jpeg',
+                        'Opportunity pathways': 'opportunity.jpeg',
+                    };
+                    const defaultImage = 'bg-image.png';
+                %>
                 <div class="news_cards">
-                    <% posts.forEach((post, i) => { %>
+                    <% posts.forEach(post => { %>
                     <div class="card">
-                        <img src="/images/<%= images[i % images.length] %>" alt="<%= post.title %>">
+                        <img src="/images/<%= categoryImages[post.category] || defaultImage %>" alt="<%= post.title %>">
                         <div class="card_text">
                             <span class="card_tag"><%= post.category %></span>
                             <h3><%= post.title %></h3>
