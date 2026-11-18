@@ -485,33 +485,6 @@ body{
     line-height: 1.5;
 }
 
-/* Cover image field: label text above the file input. */
-.publish_image{
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    font-weight: bold;
-}
-.publish_image input{
-    font-weight: normal;
-    cursor: pointer;
-}
-/* The browser's "Choose file" button, styled like the tags on the news cards. */
-.publish_image input::file-selector-button{
-    margin-right: 10px;
-    padding: 5px 12px;
-    background-color: #0b2a5b;
-    color: #f5b300;
-    font-weight: bold;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-}
-.publish_image input::file-selector-button:hover{
-    background-color: #f5b300;
-    color: #0b2a5b;
-}
-
 /* Same look as .buttons (navy with blue border, gold on hover). */
 .publish_form button{
     align-self: flex-end;

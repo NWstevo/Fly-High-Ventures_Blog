@@ -13,14 +13,7 @@
             <option value="Opportunity pathways">Opportunity pathways</option>
         </select>
 
-        <%# Optional cover image. Not uploaded yet: the form needs enctype="multipart/form-data" and the route needs multer.
-            `accept` only filters the file picker; the server still has to check the file type. %>
-        <label class="publish_image">
-            Cover image (optional)
-            <input type="file" name="image" accept="image/png, image/jpeg, image/webp">
-        </label>
-
-        <textarea name="content" rows="10" placeholder="Write your article" required></textarea>
+        <textarea name="content" rows="20" placeholder="Write your article" required></textarea>
 
         <button type="submit">Publish</button>
     </form>
