@@ -55,9 +55,6 @@ app.get('/', (req,res)=>{
     const posts = getAllPosts(category);
     res.render('index', {title: "Home", posts, activeCategory: category || 'All' })
 })
-app.get('/article', (req,res)=>{
-    res.render('article', {title: "article"})
-})
 // Feature routers.
 app.use(postRoute)
 app.use(authRoute)
