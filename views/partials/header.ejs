@@ -27,12 +27,6 @@
         </div>
 
         <div class="nav_bar_right container nav_prop">
-            <search>
-                <form action="/search" method="get">
-                    <input type="search" name="search" placeholder="Type to search">
-                    <button type="submit">🔎</button>
-                </form>
-            </search>
             <%# Logout is a POST route (routes/auth.js), so it needs a form rather than a link. Only shown when logged in. %>
             <% if (locals.user) { %>
             <form action="/logout" method="post" class="nav_logout">
