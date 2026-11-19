@@ -1,11 +1,8 @@
 node_modules/
-README.md
 .env
 .playwright-mcp/
-package-lock.json
-package.json
-sqlite3 data/blog.db ".tables"
 data/blog.db
 *.db
 cookies*.txt
+.DS_Store
 
