@@ -8,7 +8,7 @@ import { loadUser } from './middlewares/loadUser.js';
 import { getAllPosts } from './data/postQueries.js';
 
 const app = express();
-const port = 3000
+const port = process.env.PORT || 3000;
 
 //View engine setup
 // res.render('index') resolves to ./views/index.ejs.
