@@ -41,12 +41,29 @@ The SQLite database (`data/blog.db`) and its tables are created automatically th
 |---|---|---|
 | `SESSION_SECRET` | In production | Signs the session cookie. In development a fallback secret is used and a warning is printed. The app refuses to start in production without it. |
 | `NODE_ENV` | No | Set to `production` to turn off live reload and require `SESSION_SECRET`. |
+| `PORT` | No | The port the server listens on. Defaults to `3000`; hosts such as Render set it automatically. |
 
 The app does not load a `.env` file, so set these in your shell or on your host, for example:
 
 ```bash
 NODE_ENV=production SESSION_SECRET=a-long-random-string npm start
 ```
+
+## Deployment (demo only)
+
+The app is deployed as a class demo on [Render](https://render.com)'s free plan, as a Node Web Service:
+
+- Build command: `npm install`
+- Start command: `npm start`
+- Environment variables: `NODE_ENV=production` and `SESSION_SECRET`
+
+Every push to `main` redeploys it automatically.
+
+> **Demo only: the data does not persist.** The app stores everything in a SQLite file (`data/blog.db`) on the server's disk. Render's free plan has no permanent disk, so the database is reset, and all accounts and articles are lost, whenever the service redeploys, restarts, or goes to sleep after 15 minutes without visitors. The first visit after it sleeps also takes about a minute.
+>
+> For real use, the data would need a persistent disk (a paid Render plan) or a hosted database such as Postgres.
+
+Netlify does not work for this project. It serves static files, and this app needs a running Node server to build its pages.
 
 ## Project structure
 
@@ -110,8 +127,9 @@ General has no filter button, so General articles only appear under All.
 
 ## Known limitations
 
+- On the deployed demo, the SQLite database is wiped on every redeploy, restart or sleep (see [Deployment](#deployment-demo-only)).
 - Dates are shown as stored, in UTC (for example `2026-11-18 11:04:21`).
 - Articles have no cover image of their own; each category uses a fixed picture.
 - There is no search.
-- Sessions are kept in memory, so everyone is logged out when the server restarts. A persistent session store is needed before deploying.
+- Sessions are kept in memory, so everyone is logged out when the server restarts. A persistent session store is needed for real use.
 - Forms have no CSRF protection yet.
